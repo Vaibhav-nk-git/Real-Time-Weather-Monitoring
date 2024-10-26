@@ -25,7 +25,7 @@ The Real-Time Weather Monitoring System is a data processing application that mo
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-github/repo-name.git
+https://github.com/Vaibhav-nk-git/Real-Time-Weather-Monitoring.git
 cd repo-name
 ```
 
