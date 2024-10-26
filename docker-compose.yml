@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: weather
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules    # Avoid overwriting node_modules inside the container
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgresql://postgres:password@db:5432/weather"
+      NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY: "your_openweathermap_api_key"
+    command: "pnpm dev"
+    # Optional: Use a wait-for script to ensure the app waits for the database to be ready
+    entrypoint: ["./wait-for.sh", "db:5432", "--", "pnpm", "dev"]
+
+volumes:
+  db-data:

@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model WeatherData {
+  id          Int      @id @default(autoincrement())
+  city        String
+  main        String
+  temp        Float
+  feels_like  Float
+  humidity    Float    // Added to store humidity
+  wind_speed   Float    // Added to store wind speed
+  timestamp   Float
+}
+
+model Alert {
+  id          Int      @id @default(autoincrement())
+  city        String
+  alertType   String
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model DailyWeatherSummary {
+  id                 Int      @id @default(autoincrement())
+  city               String
+  date               DateTime
+  averageTemperature Float
+  maximumTemperature Float
+  minimumTemperature Float
+  dominantCondition  String
+  humidity           Float    // Added to store aggregated humidity
+  windSpeed          Float    // Added to store aggregated wind speed
+}

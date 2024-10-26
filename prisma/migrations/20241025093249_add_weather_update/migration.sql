@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "WeatherData" ALTER COLUMN "timestamp" SET DATA TYPE DOUBLE PRECISION;

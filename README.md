@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Real-Time Weather Monitoring System
+
+## Description
+The Real-Time Weather Monitoring System is a data processing application that monitors weather conditions across multiple cities. It provides summarized insights, including temperature trends and daily weather summaries, utilizing the OpenWeatherMap API for data retrieval and PostgreSQL for data storage. This system is designed to deliver real-time alerts based on temperature thresholds and visualize historical weather data.
+
+## Requirements
+- Node.js (v18+)
+- Docker and Docker Compose
+- OpenWeatherMap API key
+- pnpm package manager
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-github/repo-name.git
+cd repo-name
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set Up Environment Variables
+Create a `.env` file in the root directory and add your OpenWeatherMap API key:
+```makefile
+OPENWEATHER_API_KEY=your_api_key_here
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Start the PostgreSQL Database with Docker
+Navigate to the `docker` directory and start the database using Docker Compose:
+```bash
+cd docker
+docker-compose up -d
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Install Dependencies
+Navigate back to the root directory and install the project dependencies:
+```bash
+cd ..
+pnpm install
+```
 
-## Learn More
+### 5. Run the Application
+Start the application in development mode:
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 6. Access the Application
+Open your browser and go to [http://localhost:3000/weather](http://localhost:3000/weather) to access the weather monitoring system.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Build Instructions
+To prepare the application for production, run the following command:
+```bash
+pnpm build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Choices
+- **Architecture**: The application is structured using a Next.js framework for the frontend and a PostgreSQL database for storing weather data. The backend fetches real-time weather data from the OpenWeatherMap API.
+- **State Management**: The application uses React hooks for managing state and fetching data.
+- **Alert System**: The system generates alerts when the temperature exceeds a certain threshold, providing users with timely notifications.
